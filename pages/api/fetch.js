@@ -1,13 +1,13 @@
 import faunadb, { query as q } from 'faunadb'
 
-const { FAUNADB_SECRET: secret } = process.env
+const { FAUNA_ADMIN_KEY: secret } = process.env
 
 const client = new faunadb.Client({ secret })
 
 export default async function handler(req, res) {
   
 
-    const { data} = await client.query(
+    const { data } = await client.query(
         q.Map(
             q.Paginate(
                 q.Range(

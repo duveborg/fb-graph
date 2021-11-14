@@ -4,7 +4,7 @@ import Cheerio from 'cheerio'
 import axios from 'axios'
 import * as iso88592 from 'iso-8859-2';
 
-const { FAUNADB_SECRET: secret } = process.env
+const { FAUNA_ADMIN_KEY: secret } = process.env
 
 const client = new faunadb.Client({ secret })
 
