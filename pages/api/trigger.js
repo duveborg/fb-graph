@@ -16,7 +16,8 @@ export default async function handler(req, res) {
     method: 'GET',
     url: 'https://www.flashback.org/aktuella-amnen',
     responseType: 'arraybuffer',
-    responseEncoding: 'binary'
+    responseEncoding: 'binary',
+    timeout: 4000
   });
 
   const html = iso88592.decode(request.data.toString('binary'));
