@@ -2,7 +2,7 @@
 import faunadb, { query as q } from 'faunadb'
 import Cheerio from 'cheerio'
 import axios from 'axios'
-import * as iso88592 from 'iso-8859-2';
+import * as iso88592 from 'iso-8859-2'
 
 
 const { FAUNA_ADMIN_KEY: secret } = process.env
@@ -12,9 +12,14 @@ const client = new faunadb.Client({ secret })
 const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
 const fetchHtml = async () => {
-  const {data } = await axios.get('https://www.flashback.org/aktuella-amnen')
-  return data 
-
+  try {
+    const { data } = await axios.get('https://www.flashback.org/aktuella-amnen')
+    return data
+  } catch (error) {
+    console.error(error)
+    console.log('got error', error.message)
+    return ''
+  }
 
   try {
     const request = await axios.request({
@@ -23,10 +28,10 @@ const fetchHtml = async () => {
       responseType: 'arraybuffer',
       responseEncoding: 'binary',
       timeout: 9500
-    });
-  
-    return iso88592.decode(request.data.toString('binary'));
-  } catch(error) {
+    })
+
+    return iso88592.decode(request.data.toString('binary'))
+  } catch (error) {
     console.error(error)
     console.log('got error', error.message)
     return ''
@@ -38,7 +43,7 @@ export default async function handler(req, res) {
   const html = await fetchHtml()
   const $ = Cheerio.load(html)
 
-  const items = []
+  const items = []
   $("tr").map((_, row) => {
     const content = $(row).find('.text-muted.visible-xs').text()
     const link = $(row).find('a').attr('href')
@@ -68,7 +73,7 @@ export default async function handler(req, res) {
     ),
   ))
 
-  const result = 'Saved this many items: ' + popularItems.length 
+  const result = 'Saved this many items: ' + popularItems.length
 
   console.log(result)
 
