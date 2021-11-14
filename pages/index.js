@@ -5,21 +5,45 @@ import useSWR from 'swr'
 import React, { PureComponent } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import _ from 'lodash'
-
+import randomColor from 'randomcolor'
+import { Line as LineChartJs } from 'react-chartjs-2';
 
 const fetcher = async (url) => {
-
   const response = await fetch(url)
   return await response.json()
-
 }
+
+
 
 export default function Home() {
   const { data, error } = useSWR('/api/fetch', fetcher)
 
   if (!data) return "Loading"
 
-  console.log(data.data)
+  const datasets = _.map(_.groupBy(data.data, 'title'), ( values, title) => {
+    const color = randomColor({seed: title})
+    return {
+      label: title,
+      backgroundColor: color,
+      borderColor: color,
+      data: values.map(value => ({
+        y: value.readers,
+        x: value.time['@ts'],
+
+      }))
+    }
+  })
+  const chartData = {
+    datasets
+  }
+
+  const options = {
+    plugins: {
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -29,16 +53,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <LineChartJs data={chartData} options={options}/>
 
-      <ResponsiveContainer width={"100%"} height={500}>
-        <LineChart width={700} height={300} data={data.data}>
-          <XAxis dataKey="time.@ts" />
-          <YAxis dataKey="readers" />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="readers" stroke="#8884d8" strokeWidth={2} />
-        </LineChart> 
-        </ResponsiveContainer>
+
+
     </div>
   )
 }
