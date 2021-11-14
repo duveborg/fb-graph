@@ -15,33 +15,20 @@ const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
 const fetchHtml = async () => {
 
-  const response = await fetch('https://www.flashback.org/aktuella-amnen');
-const body = await response.text();
-return body
-
-  try {
-    const { data } = await axios.get('https://www.flashback.org/aktuella-amnen', { timeout: 9000})
-    return data
-  } catch (error) {
-    console.error(error)
-    console.log('got error', error.message)
-    return ''
-  }
 
   try {
     const request = await axios.request({
       method: 'GET',
       url: 'https://www.flashback.org/aktuella-amnen',
       responseType: 'arraybuffer',
-      responseEncoding: 'binary',
-      timeout: 9500
+      responseEncoding: 'binary'
     })
 
     return iso88592.decode(request.data.toString('binary'))
   } catch (error) {
     console.error(error)
     console.log('got error', error.message)
-    return ''
+    return null
   }
 }
 
