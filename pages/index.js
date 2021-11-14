@@ -20,14 +20,15 @@ export default function Home() {
   const groupedByTitle = _.groupBy(data.data, 'title')
   const datasets = _.map(groupedByTitle, (values, title) => {
     const color = randomColor({ seed: title })
-    const currentReaders = _.last(values).readers
+    const last = _.last(values)
     return {
-      label: title + " (" + currentReaders + ")",
+      label: title + " (" + last.readers + ")",
       backgroundColor: color,
       borderColor: color,
+      lastValue: last,
       data: values.map(value => ({
         y: value.readers,
-        x: value.time['@ts']
+        x: value.time['@ts'],
       }))
     }
   })
@@ -37,6 +38,11 @@ export default function Home() {
   }
 
   const options = {
+    onClick(e, element) {
+      if (!element.length) return
+      const item = datasets[element[0].datasetIndex].lastValue;
+      window.open('https://www.flashback.org/' + item.link, '_blank').focus();
+    },
     scales: {
       x: {
         type: 'time',
