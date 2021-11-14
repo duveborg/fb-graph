@@ -11,10 +11,12 @@
   "dependencies": {
     "axios": "^0.24.0",
     "chart.js": "^3.6.0",
+    "chartjs-adapter-moment": "^1.0.0",
     "cheerio": "^1.0.0-rc.10",
     "faunadb": "^4.4.1",
     "iso-8859-2": "^3.0.2",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "next": "12.0.1",
     "randomcolor": "^0.6.2",
     "react": "17.0.2",

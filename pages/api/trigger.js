@@ -4,6 +4,7 @@ import Cheerio from 'cheerio'
 import axios from 'axios'
 import * as iso88592 from 'iso-8859-2';
 
+
 const { FAUNA_ADMIN_KEY: secret } = process.env
 
 const client = new faunadb.Client({ secret })
@@ -14,20 +15,17 @@ const fetchHtml = async () => {
   try {
     const request = await axios.request({
       method: 'GET',
-      //url: 'https://google.com',
       url: 'https://www.flashback.org/aktuella-amnen',
       responseType: 'arraybuffer',
       responseEncoding: 'binary',
-      timeout: 7000
+      timeout: 9500
     });
   
-    const html = iso88592.decode(request.data.toString('binary'));
-
-    return html
+    return iso88592.decode(request.data.toString('binary'));
   } catch(error) {
     console.error(error)
     console.log('got error', error.message)
-    return null
+    return ''
   }
 }
 
@@ -66,7 +64,11 @@ export default async function handler(req, res) {
     ),
   ))
 
-  res.status(200).json({ result: 'Saved this many items: ' + popularItems.length })
+  const result = 'Saved this many items: ' + popularItems.length 
+
+  console.log(result)
+
+  res.status(200).json({ result })
 }
 
 

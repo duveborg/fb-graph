@@ -12,7 +12,7 @@ export default async function handler(req, res) {
             q.Paginate(
                 q.Range(
                     q.Match(q.Index('all_items')),
-                    q.TimeSubtract(q.Now(), 1, "days"),
+                    q.TimeSubtract(q.Now(), 5, "days"),
                     q.Now()
                 ),
                 {
