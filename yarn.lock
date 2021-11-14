@@ -1281,6 +1281,11 @@
   "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.6.0.tgz"
   "version" "3.6.0"
 
+"chartjs@^0.3.24":
+  "integrity" "sha1-Ot3rWuNgaz6J40bCfVLKFYQW6T0="
+  "resolved" "https://registry.npmjs.org/chartjs/-/chartjs-0.3.24.tgz"
+  "version" "0.3.24"
+
 "cheerio-select@^1.5.0":
   "integrity" "sha512-qocaHPv5ypefh6YNxvnbABM07KMxExbtbfuJoIie3iZXX1ERwYmJcIiRrr9H05ucQP1k28dav8rpdDgjQd8drg=="
   "resolved" "https://registry.npmjs.org/cheerio-select/-/cheerio-select-1.5.0.tgz"

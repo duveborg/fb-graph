@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "chartjs": "^0.3.24",
     "cheerio": "^1.0.0-rc.10",
     "faunadb": "^4.4.1",
     "iso-8859-2": "^3.0.2",
