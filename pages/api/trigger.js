@@ -7,10 +7,11 @@ import fetch from 'node-fetch';
 
 
 const { FAUNA_ADMIN_KEY: secret } = process.env
-
+ 
 const client = new faunadb.Client({ secret })
 
 const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
+
 
 const fetchHtml = async () => {
 
