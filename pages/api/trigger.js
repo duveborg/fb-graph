@@ -13,7 +13,7 @@ const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
 const fetchHtml = async () => {
   try {
-    const { data } = await axios.get('https://www.flashback.org/aktuella-amnen')
+    const { data } = await axios.get('https://www.flashback.org/aktuella-amnen', { timeout: 9000})
     return data
   } catch (error) {
     console.error(error)
