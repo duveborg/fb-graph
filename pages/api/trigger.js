@@ -14,7 +14,7 @@ const fetchHtml = async () => {
   try {
     const request = await axios.request({
       method: 'GET',
-      url: 'https://aftonbladet.se',
+      url: 'https://google.com',
       //url: 'https://www.flashback.org/aktuella-amnen',
       responseType: 'arraybuffer',
       responseEncoding: 'binary',
