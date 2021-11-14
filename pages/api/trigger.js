@@ -14,15 +14,15 @@ const fetchHtml = async () => {
   try {
     const request = await axios.request({
       method: 'GET',
-      url: 'https://google.com',
-      //url: 'https://www.flashback.org/aktuella-amnen',
+      //url: 'https://google.com',
+      url: 'https://www.flashback.org/aktuella-amnen',
       responseType: 'arraybuffer',
       responseEncoding: 'binary',
       timeout: 7000
     });
   
     const html = iso88592.decode(request.data.toString('binary'));
-    console.log('html')
+
     return html
   } catch(error) {
     console.error(error)
