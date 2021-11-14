@@ -12,6 +12,10 @@ const client = new faunadb.Client({ secret })
 const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
 const fetchHtml = async () => {
+  const {data } = await axios.get('https://www.flashback.org/aktuella-amnen')
+  return data 
+
+
   try {
     const request = await axios.request({
       method: 'GET',
