@@ -3,6 +3,7 @@ import faunadb, { query as q } from 'faunadb'
 import Cheerio from 'cheerio'
 import axios from 'axios'
 import * as iso88592 from 'iso-8859-2'
+import fetch from 'node-fetch';
 
 
 const { FAUNA_ADMIN_KEY: secret } = process.env
@@ -12,6 +13,11 @@ const client = new faunadb.Client({ secret })
 const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
 const fetchHtml = async () => {
+
+  const response = await fetch('https://www.flashback.org/aktuella-amnen');
+const body = await response.text();
+return body
+
   try {
     const { data } = await axios.get('https://www.flashback.org/aktuella-amnen', { timeout: 9000})
     return data
