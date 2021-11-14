@@ -10,19 +10,28 @@ const client = new faunadb.Client({ secret })
 
 const onlyNumbers = str => parseInt(str.replace(/\s/g, ''))
 
+const fetchHtml = async () => {
+  try {
+    const request = await axios.request({
+      method: 'GET',
+      url: 'https://www.flashback.org/aktuella-amnen',
+      responseType: 'arraybuffer',
+      responseEncoding: 'binary',
+      timeout: 7000
+    });
+  
+    const html = iso88592.decode(request.data.toString('binary'));
+    return html
+  } catch(error) {
+    console.error(error)
+    console.log('got error', error.message)
+    return null
+  }
+}
+
 export default async function handler(req, res) {
 
-  const request = await axios.request({
-    method: 'GET',
-    url: 'https://www.flashback.org/aktuella-amnen',
-    responseType: 'arraybuffer',
-    responseEncoding: 'binary',
-    timeout: 4000
-  });
-
-  const html = iso88592.decode(request.data.toString('binary'));
-  //const { data: html } = await axios.get('https://www.flashback.org/aktuella-amnen')
-
+  const html = await fetchHtml()
   const $ = Cheerio.load(html)
 
   const items = []
