@@ -73,7 +73,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Line data={chartData} options={options} />
+      <Line height="200" data={chartData} options={options} />
 
     </div>
   )

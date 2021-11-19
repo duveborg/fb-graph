@@ -11,9 +11,10 @@ export default async function handler(req, res) {
         q.Map(
             q.Paginate(
                 q.Range(
-                    q.Match(q.Index('all_items')),
-                    q.TimeSubtract(q.Now(), 5, "days"),
-                    q.Now()
+                    q.Match(q.Index('items')),
+                    q.Now(),
+                    q.TimeSubtract(q.Now(), 5, "days")
+              
                 ),
                 {
                     size: 1000
