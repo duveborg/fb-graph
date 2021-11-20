@@ -18,7 +18,7 @@ export default function Home() {
   if (!data) return "Loading"
 
   const groupedByTitle = _.groupBy(data.data, 'title')
-  const datasets = _.map(groupedByTitle, (values, title) => {
+  let datasets = _.map(groupedByTitle, (values, title) => {
     const color = randomColor({ seed: title })
     const last = _.last(values)
     return {
@@ -32,6 +32,9 @@ export default function Home() {
       }))
     }
   })
+
+   datasets = datasets.sort((a, b) => b.lastValue.readers - a.lastValue.readers)
+  console.log(datasets)
 
   const chartData = {
     datasets
