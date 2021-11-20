@@ -17,8 +17,9 @@ export default function Home() {
 
   if (!data) return "Loading"
 
-  const groupedByTitle = _.groupBy(data.data, 'title')
-  let datasets = _.map(groupedByTitle, (values, title) => {
+  const grouped = _.groupBy(data.data, 'link')
+  let datasets = _.map(grouped, (values) => {
+    const title = values[0].title
     const color = randomColor({ seed: title })
     const last = _.first(values)
     return {
