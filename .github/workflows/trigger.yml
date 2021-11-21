@@ -1,0 +1,12 @@
+name: Trigger fetch
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call api
+        run: |
+          curl --request GET \
+          --url 'https://fb-graph-xi.vercel.app/api/trigger'

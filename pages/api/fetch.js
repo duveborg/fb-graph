@@ -5,8 +5,6 @@ const { FAUNA_ADMIN_KEY: secret } = process.env
 const client = new faunadb.Client({ secret })
 
 export default async function handler(req, res) {
-  
-
     const { data } = await client.query(
         q.Map(
             q.Paginate(
@@ -17,7 +15,7 @@ export default async function handler(req, res) {
               
                 ),
                 {
-                    size: 1000
+                    size: 3000
                 }
             ),
             q.Lambda((time, ref) => q.Get(ref))
