@@ -15,7 +15,7 @@ export default async function handler(req, res) {
               
                 ),
                 {
-                    size: 3000
+                    size: 2000
                 }
             ),
             q.Lambda((time, ref) => q.Get(ref))

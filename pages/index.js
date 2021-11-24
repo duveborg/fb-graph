@@ -15,7 +15,13 @@ const fetcher = async (url) => {
 export default function Home() {
   const { data } = useSWR('/api/fetch', fetcher)
 
-  if (!data) return "Loading"
+  if (!data) {
+    return (
+      <div className={styles.loading}>
+        Loading...
+      </div>
+    )
+  } 
 
   const grouped = _.groupBy(data.data, 'link')
   let datasets = _.map(grouped, (values) => {
