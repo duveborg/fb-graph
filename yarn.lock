@@ -1276,7 +1276,7 @@
     "ansi-styles" "^4.1.0"
     "supports-color" "^7.1.0"
 
-"chart.js@^3.0.0", "chart.js@^3.5.0", "chart.js@^3.6.0":
+"chart.js@^3.0.0", "chart.js@^3.2.0", "chart.js@^3.5.0", "chart.js@^3.6.0":
   "integrity" "sha512-iOzzDKePL+bj+ccIsVAgWQehCXv8xOKGbaU2fO/myivH736zcx535PGJzQGanvcSGVOqX6yuLZsN3ygcQ35UgQ=="
   "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.6.0.tgz"
   "version" "3.6.0"
@@ -1285,6 +1285,13 @@
   "integrity" "sha512-PqlerEvQcc5hZLQ/NQWgBxgVQ4TRdvkW3c/t+SUEQSj78ia3hgLkf2VZ2yGJtltNbEEFyYGm+cA6XXevodYvWA=="
   "resolved" "https://registry.npmjs.org/chartjs-adapter-moment/-/chartjs-adapter-moment-1.0.0.tgz"
   "version" "1.0.0"
+
+"chartjs-plugin-zoom@^1.2.0":
+  "integrity" "sha512-cLYKUHHx4bevuZQDpEKdjpvZ6HGu6NF8laTThgA0I9af+PV1N4qVTRZmyDNh0SAzsHZPtDOhuO3I7B4CF1lstw=="
+  "resolved" "https://registry.npmjs.org/chartjs-plugin-zoom/-/chartjs-plugin-zoom-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "hammerjs" "^2.0.8"
 
 "cheerio-select@^1.5.0":
   "integrity" "sha512-qocaHPv5ypefh6YNxvnbABM07KMxExbtbfuJoIie3iZXX1ERwYmJcIiRrr9H05ucQP1k28dav8rpdDgjQd8drg=="
@@ -2618,6 +2625,11 @@
   "integrity" "sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg=="
   "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz"
   "version" "4.2.8"
+
+"hammerjs@^2.0.8":
+  "integrity" "sha1-BO93hiz/K7edMPdpIJWTAiK/YPE="
+  "resolved" "https://registry.npmjs.org/hammerjs/-/hammerjs-2.0.8.tgz"
+  "version" "2.0.8"
 
 "has-bigints@^1.0.1":
   "integrity" "sha512-LSBS2LjbNBTf6287JEbEzvJgftkF5qFkmCo9hDRpAzKhUOlJ+hx8dd4USs00SgsUNwc4617J9ki5YtEClM2ffA=="

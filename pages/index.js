@@ -1,21 +1,27 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr'
-import React from 'react'
+import React, {useEffect} from 'react'
 import _ from 'lodash'
 import randomColor from 'randomcolor'
-import { Line } from 'react-chartjs-2'
+import { Line, Chart } from 'react-chartjs-2'
 import 'chartjs-adapter-moment'
+import zoomPlugin from "chartjs-plugin-zoom";
 
-const fetcher = async (url) => {
-  const response = await fetch(url)
-  return await response.json()
-}
+Chart.register(zoomPlugin);
+
 
 export default function Home() {
-  const { data } = useSWR('/api/fetch', fetcher)
 
-  if (!data) return "Loading"
+
+  const { data } = useSWR('/api/fetch', async (url) => {
+    const response = await fetch(url)
+    return await response.json()
+  })
+
+
+
+  if (!data || !process.browser) return "Loading"
 
   const grouped = _.groupBy(data.data, 'link')
   let datasets = _.map(grouped, (values) => {
@@ -64,7 +70,22 @@ export default function Home() {
       },
       legend: {
         position: 'bottom'
+      },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true // SET SCROOL ZOOM TO TRUE
+          },
+          mode: "xy",
+          speed: 100
+        },
+        pan: {
+          enabled: true,
+          mode: "xy",
+          speed: 100
+        }
       }
+    
     }
   }
 
